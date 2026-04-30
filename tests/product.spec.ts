@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage';
 import { ProductPage } from '../pages/ProductPage';
 
-test.only("Validate add to product",async ({page})=>{
+test("Validate add to product",async ({page})=>{
     const loginPage=new LoginPage(page);
     const productPage=new ProductPage(page);
 
