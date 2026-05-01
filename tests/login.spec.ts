@@ -1,24 +1,26 @@
 import {test,expect} from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage';
+import { loginData } from '../data/loginData';
 
-test("Login test", async ({page})=>{
-    const loginPage= new LoginPage(page);
 
-    await loginPage.navigate();
-    await loginPage.login('standard_user','secret_sauce');
-    await expect(page).toHaveURL(/inventory/);
-    console.log(page.url());
-});
 
-test("Validate login failed",async ({page})=>{
-    const loginPage=new LoginPage(page);
-    await loginPage.navigate();
-    await loginPage.login('standard_user','random');
+test.describe('Login Tests (Data driven)',()=>{
+    
+    loginData.forEach((data)=>{
 
-    const error=page.locator("[data-test='error']");
+        test(`Login | ${data.username} | ${data.expected}`,async ({page})=>{
+            const loginPage=new LoginPage(page);
 
-    expect(error).toBeVisible;
-    expect(error).toHaveText(/Username and password do not match/);
-    expect(page).toHaveURL('https://www.saucedemo.com');
+            await loginPage.navigate();
+            await loginPage.login(data.username,data.password);
+
+            if(data.expected==='success'){
+                await expect(page).toHaveURL(/inventory/);
+            }
+            else{
+                await expect(page.locator("[data-test='error']")).toBeVisible();
+            }
+        })
+    })
 
 });
