@@ -8,7 +8,8 @@ test.describe('Login Tests (Data driven)',()=>{
     
     loginData.forEach((data)=>{
 
-        test(`Login | ${data.username} | ${data.expected}`,async ({page})=>{
+        test(`Login | ${data.username} | ${data.expected}`,async ({page,browserName})=>{
+            console.log(browserName);
             const loginPage=new LoginPage(page);
 
             await loginPage.navigate();
@@ -20,6 +21,7 @@ test.describe('Login Tests (Data driven)',()=>{
             else{
                 await expect(page.locator("[data-test='error']")).toBeVisible();
             }
+            page.waitForTimeout(3000);
         })
     })
 

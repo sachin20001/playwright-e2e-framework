@@ -37,9 +37,16 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {name:'chromium'},
-    {name:'firefox'},
-    {name:'webkit'},
+    {name:'chromium',
+      use: {browserName:'chromium'}
+
+    },
+    {name:'firefox',
+      use: {browserName:'firefox'}
+    },
+    {name:'webkit',
+      use: {browserName:'webkit'}
+    },
  
   ],
 
