@@ -32,7 +32,7 @@ export default defineConfig({
     baseURL: 'https://saucedemo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video:'retain-on-failure'
+    video:'on'
   },
 
   /* Configure projects for major browsers */
