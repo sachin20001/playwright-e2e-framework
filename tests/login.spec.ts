@@ -21,7 +21,6 @@ test.describe('Login Tests (Data driven)',()=>{
             else{
                 await expect(page.locator("[data-test='error']")).toBeVisible();
             }
-            page.waitForTimeout(3000);
         })
     })
 

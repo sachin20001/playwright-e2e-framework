@@ -32,20 +32,20 @@ export default defineConfig({
     baseURL: 'https://saucedemo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video:'on'
+    video:'retain-on-failure'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {name:'chromium',
-      use: {browserName:'chromium'}
+      use: {...devices['Desktop Chrome']}
 
     },
     {name:'firefox',
-      use: {browserName:'firefox'}
+      use: {...devices['Desktop Firefox']}
     },
     {name:'webkit',
-      use: {browserName:'webkit'}
+      use: {...devices['Desktop Safari']}
     },
  
   ],
